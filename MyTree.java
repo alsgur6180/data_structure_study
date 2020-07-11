@@ -1,80 +1,79 @@
-package 자바과제;
+
 
 import java.util.ArrayList;
 
 public class MyTree {
-	private MyNode root;
-	private int size;
 	
-	MyTree() {root = null;}
-	MyTree(Object e, Object vol) {
-		root = new MyNode(e,vol); 
-		root.setChildren(new ArrayList());
+	private MyNode root;
+	private int totalSize;
+	
+	public MyTree() {
+		this.root = null;
+		this.totalSize = 0;		
+	}
+	
+	public MyTree(Object e) {		
+		this.root = new MyBinNode(e);					
+		this.totalSize = 1;
 	}
 	
 	public int size() {
-		this.size= 1;
-		return size();
-		
+		return this.totalSize;
 	}
+	
 	public MyNode root() {
 		return this.root;
-		
 	}
-
 	
 	public ArrayList children(MyNode v) {
-		return v.children();	
+		return v.children();
 	}
+	
 	public boolean isExternal(MyNode v) {
 		return v.children().isEmpty();
-		
 	}
+	
 	public MyNode addRoot(Object e) {
-		this.setRoot(new MyNode(e));
-		return this.root;
-		
-		
-	
+		MyNode temp = this.root;
+		this.root = new MyBinNode(e);			
+		this.totalSize = 1;
+		return temp;		
 	}
+	
 	public MyNode addNode(Object e) {
-		MyNode nn = new MyNode(e);
-		nn.setParent(root);
-		root.children().add(nn);
-		size++;
-		return nn;
-	
-		
+		MyNode newNode = new MyBinNode(e);		
+		newNode.setParent(this.root);
+		this.root.children().add(newNode);		
+		this.totalSize++;
+		return newNode;
 	}
-	public MyNode addChild(MyNode v,Object e,Object vol) {
-		MyNode nn = new MyNode(e,vol);
-		nn.setParent(v);
-		v.children().add(nn);
-		size++;
-		return nn;
 	
+	public MyNode addChild(MyNode v, Object e) {
+		MyNode newNode = new MyBinNode(e);	
+		newNode.setParent(v);
+		v.children().add(newNode);
+		this.totalSize++;
+		return newNode;
 	}
-	public MyNode addChild(MyNode v,int i, Object e) {
-		MyNode nn = new MyNode(e);
-		nn.setParent(v);
-		v.children().add(i, nn);
-		size++;
-		return nn;
 	
+	public MyNode addChild(MyNode v, int i, Object e) {
+		MyNode newNode = new MyBinNode(e);		
+		newNode.setParent(v);
+		v.children().add(i, newNode);
+		this.totalSize++;
+		return newNode;
 	}
-	public MyNode setChild(MyNode v, int i, Object e,Object volume vol) {
-		MyNode nn = new MyNode(e);
-		nn.setParent(v);
-		return (MyNode)v.children().set(i,nn);
 	
+	public MyNode setChild(MyNode v, int i, Object e) {
+		MyNode newNode = new MyBinNode(e);		
+		newNode.setParent(v);
+		v.children().set(i, newNode);
+		return newNode;
 	}
+	
 	public MyNode removeChild(MyNode v, int i) {
-		size--;
-		return (MyNode) v.children().remove(i);
+		this.totalSize--;
+		return (MyNode)v.children().remove(i);
 	}
-
-		
 
 }
-
-
