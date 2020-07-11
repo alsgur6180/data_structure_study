@@ -5,12 +5,21 @@ public class MyNode {
 	private Object element;
 	private MyNode parent;
 	private ArrayList children;
+	private Object volume;
 	MyNode() {
 		element = null;
 		parent = null;
-		children = null; 
+		children = null;
+		volume = null;
 	}
-	MyNode(Object e) { this.element = e; this.parent = null;this.children = null;
+	MyNode(Object e) 
+	{
+		this.element = e; 
+		this.parent = null;
+		this.children = null;
+	}
+	public Object volume() {
+		return this.volume;
 	}
 	public Object element() {
 		return this.element;

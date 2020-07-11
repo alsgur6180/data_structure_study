@@ -7,8 +7,8 @@ public class MyTree {
 	private int size;
 	
 	MyTree() {root = null;}
-	MyTree(Object e) {
-		root = new MyNode(e); 
+	MyTree(Object e, Object vol) {
+		root = new MyNode(e,vol); 
 		root.setChildren(new ArrayList());
 	}
 	
@@ -46,8 +46,8 @@ public class MyTree {
 	
 		
 	}
-	public MyNode addChild(MyNode v,Object e) {
-		MyNode nn = new MyNode(e);
+	public MyNode addChild(MyNode v,Object e,Object vol) {
+		MyNode nn = new MyNode(e,vol);
 		nn.setParent(v);
 		v.children().add(nn);
 		size++;
@@ -62,7 +62,7 @@ public class MyTree {
 		return nn;
 	
 	}
-	public MyNode setChild(MyNode v, int i, Object e) {
+	public MyNode setChild(MyNode v, int i, Object e,Object volume vol) {
 		MyNode nn = new MyNode(e);
 		nn.setParent(v);
 		return (MyNode)v.children().set(i,nn);
