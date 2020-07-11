@@ -20,27 +20,9 @@ public class MyBST extends MyBinTree {
 		
 	}
 	
-	// using inorder - general next node - this may occur some problem MyAVLTree remove duplication exist case
-	// check out [Main.java example 7] case
-	private MyBinNode nextNode(MyBinNode v) {		
-		ArrayList inorderList = new ArrayList();
-		this.inorderNextNode(inorderList, v);
-		MyBinNode result = null;
-		
-		for(int i=0; i<inorderList.size(); i++) {
-			MyBinNode temp = (MyBinNode)inorderList.get(i);
-			if((int)temp.element() == (int)v.element()) {				
-				result = (MyBinNode)inorderList.get(i+1);
-//				System.out.println("@@@" + result.element());
-				break;
-			}
-		}
-		
-		return result;
-	}
 	
 	// using way
-	private MyBinNode nextNode2(MyBinNode v) {
+	public MyBinNode nextNode(MyBinNode v) {
 		
 		MyBinNode result = null;
 		
@@ -202,8 +184,7 @@ public class MyBST extends MyBinTree {
 					// case - internal both child
 					
 					// find next node & copy & remove
-//					MyBinNode nextNode = this.nextNode(temp); 
-					MyBinNode nextNode = this.nextNode2(temp);
+					MyBinNode nextNode = this.nextNode(temp); 					
 					temp.setElement(nextNode.element());
 					MyBinNode nextNodeParent = (MyBinNode)nextNode.parent();					
 					result = super.remove(nextNode);
